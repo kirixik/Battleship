@@ -2,7 +2,7 @@ import * as ActionTypes from '../actions/actionTypes'
 import { cellState, boardSize } from "../constants"
 const getInitBoard = function (size = boardSize) {
   const board = [];
-  for (let i = 0; i <size; i++) {
+  for (let i = 0; i < size; i++) {
     board.push(Array(size).fill(cellState.empty));
   }
   return board;
@@ -16,7 +16,8 @@ const initialState = { // initial state of application
     "cruiser": { count: 0 },
     "submarine": { count: 0 },
     "destroyer": { count: 0 },
-  }
+  },
+  points: 0
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -41,7 +42,8 @@ const rootReducer = (state = initialState, action) => {
       }
       return {
         board: newBoard,
-        sunkenShips: newSunkenShips
+        sunkenShips: newSunkenShips,
+        points: state.points + 1
       }
     }
     case ActionTypes.MISS: {

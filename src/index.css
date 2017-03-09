@@ -3,3 +3,191 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+.battleship {
+    display: flex;
+    flex-direction: column;
+}
+
+.battleship_square {
+    display: flex;
+    flex-wrap: wrap;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 8px solid #ffb000;
+    box-sizing: border-box;
+}
+
+.battleship_square-cell {
+    width: 10vw;
+    height: 10vw;
+    padding: 0;
+    margin: 0;
+}
+
+.battleship_square-cell button {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background: #f8f8f8;
+    border: 1px solid #c8c8c8;
+}
+
+.battleship_square-cell.miss button{
+    background-image: url("../public/assets/miss.png");
+    background-size: 100% 100%;
+}
+.battleship_square-cell.hit button{
+    background-image: url("../public/assets/hit.png");
+    background-size: 100% 100%;
+}
+
+.battleship_result-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.score-table {
+    display: flex;
+}
+
+.score-table_player-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background-color: #25b79f;
+    color: #4a4a4a;
+    padding-bottom: 5px;
+}
+
+.score-table_player-score {
+    font-size: 3em;
+    border-bottom: 1px solid #4a4a4a;
+    flex-grow: 1;
+    vertical-align: middle;
+}
+
+.score-table_player-name {
+    flex-grow: 0;
+}
+
+.score-table_player-info--active {
+    background-color: #ffb000;
+}
+
+.shape-list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 120px;
+}
+
+.shape-item {
+    width: 50%;
+    margin-bottom: 10px;
+    display: flex;
+    min-height: 30px;
+    align-items: center;
+}
+
+.shape-item_picture {
+    max-width: 80px;
+    padding-right: 5px;
+    flex-shrink: 1;
+}
+
+.shape-item_strength-item {
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    margin-right: 5px;
+    flex-shrink: 0;
+}
+
+.shape-item_strength-item--miss {
+    border-radius: 50%;
+    border: 1px solid #bab9b9;
+}
+
+.shape-item_strength-item--hit {
+    background-image: url("../public/assets/hit_small.png");
+    background-size: 10px 10px;
+}
+
+@media(min-width: 768px) {
+    .battleship_result-panel {
+        flex-direction: row;
+    }
+
+    .score-table {
+        margin: 20px 0 0 0;
+        width: 50%;
+    }
+
+    .score-table_player-score {
+        padding-top: 20px;
+    }
+
+    .shape-list {
+        margin: 20px 0 0 10px;
+        width: 50%;
+    }
+}
+
+@media(min-width: 1200px) {
+    .battleship {
+        max-width: 1200px;
+        margin: 0 auto;
+        flex-direction: row;
+    }
+
+    .battleship_square {
+        order: 2;
+    }
+
+    .battleship_square-cell {
+        width: 80px;
+        height: 80px;
+    }
+  
+     .battleship_result-panel {
+        order: 1;
+        flex-direction: column;
+        flex-basis: 35%;
+        margin-right: 20px;
+    }
+
+    .score-table {
+        width: 100%;
+        height: 15%;
+    }
+
+    .shape-list {
+        width: 100%;
+        height: auto;
+    }
+
+    .shape-item {
+        width: 100%;
+    }
+
+    .shape-item_picture {
+        max-width: 240px;
+        width: 240px;
+    }
+
+    .shape-item_strength-item {
+        height: 20px;
+        width: 20px;
+        margin-right: 5px;
+        flex-shrink: 0;
+    }
+
+    .shape-item_strength-item--hit {
+        background-size: 20px 20px;
+    }
+}
