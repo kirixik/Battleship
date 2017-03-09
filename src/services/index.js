@@ -1,6 +1,7 @@
 import ServerSide from '../serverMock';
-const serverSide = new ServerSide();
+let serverSide = new ServerSide();
 const battleShipService = {
-    checkField: (x, y) => serverSide.hitFieldAsync(x, y)
+    checkField: (x, y) => serverSide.hitFieldAsync(x, y),
+    restartService: () => { serverSide = new ServerSide() }
 }
 export default battleShipService;

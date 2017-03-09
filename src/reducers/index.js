@@ -20,6 +20,14 @@ const initialState = { // initial state of application
   points: 0
 }
 
+const isGameOver = (sunkenShips) => {
+  for (let ship in sunkenShips) {
+    if (sunkenShips[ship].count === 0)
+      return false;
+  }
+  return true;
+}
+
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.HIT: {
@@ -43,7 +51,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         board: newBoard,
         sunkenShips: newSunkenShips,
-        points: state.points + 1
+        points: state.points + 1,
+        isGameOver: isGameOver(newSunkenShips)
       }
     }
     case ActionTypes.MISS: {
@@ -55,6 +64,9 @@ const rootReducer = (state = initialState, action) => {
           ...state.board.slice(action.coord.y + 1)
         ]
       }
+    }
+    case ActionTypes.RESTART: {
+      return { ...initialState }
     }
     default:
       return state;

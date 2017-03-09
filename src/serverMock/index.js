@@ -1,4 +1,5 @@
 import { cellState } from '../constants'
+import _ from "lodash"
 const InitGameState = {
     "shipTypes": {
         "carrier": { "size": 5, "count": 1 },
@@ -19,7 +20,7 @@ const InitGameState = {
 
 class ServerSide {
     constructor() {
-        this.gameState = { ...InitGameState }
+        this.gameState = _.cloneDeep(InitGameState);
     }
     hitFieldAsync(x, y) {
         var promise = new Promise((resolve, reject) => {

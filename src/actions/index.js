@@ -12,6 +12,13 @@ export const addMiss = (x, y) => ({
     coord: { x, y }
 })
 
+export const restartGame = () => {
+    battleShipService.restartService();
+    return {
+        type: actionTypes.RESTART,
+    }
+}
+
 export const checkField = (x, y) => (dispatch, getState) => {
     battleShipService.checkField(x, y).then(action => {
         switch (action.type) {
