@@ -1,8 +1,8 @@
 import * as ActionTypes from '../actions/actionTypes'
-import { cellState } from "../constants"
-const getInitBoard = function (size = 10) {
+import { cellState, boardSize } from "../constants"
+const getInitBoard = function (size = boardSize) {
   const board = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i <size; i++) {
     board.push(Array(size).fill(cellState.empty));
   }
   return board;

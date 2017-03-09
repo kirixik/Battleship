@@ -3,3 +3,4 @@ export const cellState = {
     miss: 1,
     hit: 2
 }
+export const boardSize = 10;
