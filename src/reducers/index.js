@@ -1,15 +1,8 @@
-import * as ActionTypes from '../actions/actionTypes'
+import * as actionTypes from '../actions/actionTypes'
 import { cellState, boardSize } from "../constants"
-const getInitBoard = function (size = boardSize) {
-  const board = [];
-  for (let i = 0; i < size; i++) {
-    board.push(Array(size).fill(cellState.empty));
-  }
-  return board;
-}
 
 const initialState = { // initial state of application
-  board: getInitBoard(),
+  board: Array(boardSize).fill(Array(boardSize).fill(cellState.empty)),
   sunkenShips: {
     "carrier": { count: 0 },
     "battleship": { count: 0 },
@@ -31,7 +24,7 @@ const isGameOver = (sunkenShips) => {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.HIT: {
+    case actionTypes.HIT: {
       var newBoard = [
         ...state.board.slice(0, action.coord.y),
         [...state.board[action.coord.y].slice(0, action.coord.x), cellState.hit, ...state.board[action.coord.y].slice(action.coord.x + 1)],
@@ -56,7 +49,7 @@ const rootReducer = (state = initialState, action) => {
         isGameOver: isGameOver(newSunkenShips)
       }
     }
-    case ActionTypes.MISS: {
+    case actionTypes.MISS: {
       return {
         ...state,
         board: [
@@ -66,7 +59,7 @@ const rootReducer = (state = initialState, action) => {
         ]
       }
     }
-    case ActionTypes.RESTART: {
+    case actionTypes.RESTART: {
       return { ...initialState }
     }
     default:
