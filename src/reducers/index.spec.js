@@ -20,34 +20,61 @@ const initialState = {
         "cruiser": { count: 0 },
         "submarine": { count: 0 },
         "destroyer": { count: 0 },
-    }
+    },
+    points: 0,
+    isGameOver: false
+}
+const stateWithOneHitField = {
+    board: [
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.hit, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty]
+    ],
+    sunkenShips: {
+        "carrier": { count: 0 },
+        "battleship": { count: 0 },
+        "cruiser": { count: 0 },
+        "submarine": { count: 0 },
+        "destroyer": { count: 0 },
+    },
+    points: 1,
+    isGameOver: false
+}
+const stateWithOneMissField = {
+    board: [
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.miss, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
+        [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty]
+    ],
+    sunkenShips: {
+        "carrier": { count: 0 },
+        "battleship": { count: 0 },
+        "cruiser": { count: 0 },
+        "submarine": { count: 0 },
+        "destroyer": { count: 0 },
+    },
+    points: 0,
+    isGameOver: false
 }
 describe('reducer tests', () => {
     it('should provide the initial state', () => {
         expect(reducer(undefined, {})).toEqual(initialState)
     })
     it('should add hit to board', () => {
-        const stateWithOneHitField = {
-            board: [
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, "hit", cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty]
-            ],
-            sunkenShips: {
-                "carrier": { count: 0 },
-                "battleship": { count: 0 },
-                "cruiser": { count: 0 },
-                "submarine": { count: 0 },
-                "destroyer": { count: 0 },
-            }
-        }
         expect(reducer(initialState, {
             type: actionTypes.HIT,
             coord: {
@@ -58,64 +85,22 @@ describe('reducer tests', () => {
     })
 
     it('should add miss to board', () => {
-        const stateWithOneHitField = {
-            board: [
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, "miss", cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty]
-            ],
-            sunkenShips: {
-                "carrier": { count: 0 },
-                "battleship": { count: 0 },
-                "cruiser": { count: 0 },
-                "submarine": { count: 0 },
-                "destroyer": { count: 0 },
-            }
-        }
         expect(reducer(initialState, {
             type: actionTypes.MISS,
             coord: {
                 x: 7,
                 y: 3
             }
-        })).toEqual(stateWithOneHitField)
+        })).toEqual(stateWithOneMissField)
     })
 
     it('should add hit to board and sunk one ship', () => {
-        const stateWithOneHitField = {
-            board: [
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, "hit", cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty]
-            ],
-            sunkenShips: {
-                "carrier": { count: 0 },
-                "battleship": { count: 0 },
-                "cruiser": { count: 0 },
-                "submarine": { count: 0 },
-                "destroyer": { count: 0 },
-            }
-        }
         const stateWithTwoHitsFieldAndOneSunkenShip = {
             board: [
                 [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
                 [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
                 [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, "hit", "hit", cellState.empty],
+                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.hit, cellState.hit, cellState.empty],
                 [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
                 [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
                 [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
@@ -129,7 +114,9 @@ describe('reducer tests', () => {
                 "cruiser": { count: 0 },
                 "submarine": { count: 0 },
                 "destroyer": { count: 1 },
-            }
+            },
+            points: 2,
+            isGameOver: false
         }
         expect(reducer(stateWithOneHitField, {
             type: actionTypes.HIT,
@@ -141,21 +128,6 @@ describe('reducer tests', () => {
         })).toEqual(stateWithTwoHitsFieldAndOneSunkenShip)
     })
     it('initial state should not be changed', () => {
-        const stateWithOneHitField = {
-            board: [
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, "hit", cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty],
-                [cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty, cellState.empty]
-            ],
-            sunkenShips: []
-        }
         var result = reducer(initialState, {
             type: actionTypes.HIT,
             coord: {

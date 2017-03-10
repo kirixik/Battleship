@@ -17,7 +17,8 @@ const initialState = { // initial state of application
     "submarine": { count: 0 },
     "destroyer": { count: 0 },
   },
-  points: 0
+  points: 0,
+  isGameOver: false
 }
 
 const isGameOver = (sunkenShips) => {
